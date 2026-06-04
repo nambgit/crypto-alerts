@@ -2,7 +2,7 @@ name: Crypto Price Alert
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # chay moi 15 phut
+    - cron: "0 * * * *"      # chay vao dau moi gio: 1:00, 2:00, 3:00...
   workflow_dispatch: {}        # cho phep bam chay tay de test
 
 permissions:

@@ -332,7 +332,7 @@ def main():
         last = state.get("last_report")
         due = True
         if last:
-            due = (now - datetime.fromisoformat(last)).total_seconds() >= interval_h * 3600 - 30
+            due = (now - datetime.fromisoformat(last)).total_seconds() >= interval_h * 3600 - 900
         if due:
             embeds = build_report_embeds(config, prices)
             header = f"\U0001F4F0 **Crypto Market Update** \u2022 <t:{int(now.timestamp())}:f>"
