@@ -1,0 +1,45 @@
+{
+  "vs_currency": "usd",
+  "chart_lookback_hours": 4,
+  "movers_universe_top_n": 250,
+  "movers_count": 10,
+  "coins": {
+    "bitcoin": "BTC",
+    "ethereum": "ETH",
+    "solana": "SOL",
+    "binancecoin": "BNB",
+    "cardano": "ADA",
+    "okb": "OKB",
+    "bitget-token": "BGB"
+  },
+  "chart_coins": [
+    "bitcoin",
+    "ethereum",
+    "solana"
+  ],
+  "icons": {
+    "BTC": "🟠",
+    "ETH": "🔷",
+    "SOL": "🟣",
+    "BNB": "🟡",
+    "ADA": "🔵",
+    "OKB": "⚫",
+    "BGB": "🟢"
+  },
+  "section_colors": {
+    "current": "F7931A",
+    "update": "5865F2",
+    "gainers": "57F287",
+    "losers": "ED4245"
+  },
+  "section_emojis": {
+    "current": "🟧",
+    "update": "🟦",
+    "gainers": "🟩",
+    "losers": "🟥"
+  },
+  "report": {
+    "enabled": true,
+    "interval_hours": 6
+  }
+}

@@ -1,0 +1,38 @@
+name: Crypto Price Alert
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # chay moi 15 phut
+  workflow_dispatch: {}        # cho phep bam chay tay de test
+
+permissions:
+  contents: write              # de commit lai state.json
+
+concurrency:
+  group: price-alert
+  cancel-in-progress: false
+
+jobs:
+  check-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run price alert
+        id: run
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python price_alert.py
+
+      - name: Commit state if changed
+        if: steps.run.outputs.state_changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          git commit -m "Update alert state [skip ci]" || echo "nothing to commit"
+          git push
