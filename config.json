@@ -34,16 +34,26 @@
     "current": "F7931A",
     "update": "5865F2",
     "gainers": "57F287",
-    "losers": "ED4245"
+    "losers": "ED4245",
+    "news": "F1C40F"
   },
   "section_emojis": {
     "current": "🟧",
     "update": "🟦",
     "gainers": "🟩",
-    "losers": "🟥"
+    "losers": "🟥",
+    "news": "🟨"
   },
   "report": {
     "enabled": true,
     "interval_hours": 0.5
+  },
+  "news": {
+    "enabled": true,
+    "count": 6,
+    "feeds": [
+      "https://cointelegraph.com/rss",
+      "https://decrypt.co/feed"
+    ]
   }
 }
