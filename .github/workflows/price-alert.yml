@@ -2,7 +2,7 @@ name: Crypto Price Alert
 
 on:
   schedule:
-    - cron: "0 * * * *"      # chay vao dau moi gio: 1:00, 2:00, 3:00...
+    - cron: "0,30 * * * *"   # moi 30 phut: 8:00, 8:30, 9:00...
   workflow_dispatch: {}        # cho phep bam chay tay de test
 
 permissions:
@@ -26,6 +26,7 @@ jobs:
         id: run
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          FORCE_REPORT: ${{ github.event_name == 'workflow_dispatch' }}
         run: python price_alert.py
 
       - name: Commit state if changed

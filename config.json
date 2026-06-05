@@ -26,6 +26,10 @@
     "OKB": "⚫",
     "BGB": "🟢"
   },
+  "trend_icons": {
+    "up": "🟢",
+    "down": "🔴"
+  },
   "section_colors": {
     "current": "F7931A",
     "update": "5865F2",
@@ -40,6 +44,6 @@
   },
   "report": {
     "enabled": true,
-    "interval_hours": 1
+    "interval_hours": 0.5
   }
 }

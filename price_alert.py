@@ -182,8 +182,8 @@ def get_multi_chart_url(chart_coins, coins_map, vs_currency, lookback_hours):
 
 # ---------- Bao cao (mot dong moi coin, hop mobile) ----------
 
-UP = "\U0001F53A"    # tam giac len (tang)
-DOWN = "\U0001F53B"  # tam giac xuong (giam)
+UP = "\U0001F7E2"    # mac dinh: tron xanh la (coin TANG gia)
+DOWN = "\U0001F534"  # mac dinh: tron do (coin GIAM gia)
 COIN = "\U0001FA99"  # icon mac dinh
 
 DEFAULT_ICONS = {
@@ -256,6 +256,10 @@ def build_report_embeds(config, prices):
     movers_count = int(config.get("movers_count", 10))
     icons = config.get("icons", {})
     sc = config.get("section_colors", {})
+    ti = config.get("trend_icons", {})
+    global UP, DOWN
+    UP = ti.get("up") or "\U0001F7E2"
+    DOWN = ti.get("down") or "\U0001F534"
     se = config.get("section_emojis", {})
     def sq(key):
         return se.get(key) or DEFAULT_SECTION_EMOJIS[key]
@@ -330,8 +334,9 @@ def main():
         interval_h = float(report.get("interval_hours", 6))
         now = datetime.now(timezone.utc)
         last = state.get("last_report")
+        force = os.environ.get("FORCE_REPORT", "").lower() == "true"
         due = True
-        if last:
+        if last and not force:
             due = (now - datetime.fromisoformat(last)).total_seconds() >= interval_h * 3600 - 900
         if due:
             embeds = build_report_embeds(config, prices)
