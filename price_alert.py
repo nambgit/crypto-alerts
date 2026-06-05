@@ -6,6 +6,8 @@ import urllib.request
 import urllib.error
 import urllib.parse
 import time
+import xml.etree.ElementTree as ET
+from email.utils import parsedate_to_datetime
 
 CONFIG_PATH = "config.json"
 STATE_PATH = "state.json"
@@ -73,6 +75,46 @@ def fetch_markets(vs_currency, top_n):
         f"&per_page={per_page}&page=1&price_change_percentage=24h"
     )
     return http_get_json(url)
+
+
+ATOM = "{http://www.w3.org/2005/Atom}"
+
+
+def fetch_news(feeds, count):
+    """Doc cac RSS feed, gom tin moi nhat (title, link, source, thoi gian)."""
+    items = []
+    for url in feeds:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                raw = resp.read()
+            root = ET.fromstring(raw)
+            channel = root.find("channel")
+            if channel is not None:                       # RSS 2.0
+                source = (channel.findtext("title") or "").strip()
+                entries = channel.findall("item")
+            else:                                         # Atom
+                source = (root.findtext(ATOM + "title") or "").strip()
+                entries = root.findall(ATOM + "entry")
+            for it in entries:
+                title = (it.findtext("title") or it.findtext(ATOM + "title") or "").strip()
+                link = (it.findtext("link") or "").strip()
+                if not link:
+                    le = it.find(ATOM + "link")
+                    if le is not None:
+                        link = le.get("href", "")
+                pub = it.findtext("pubDate") or it.findtext(ATOM + "updated") or ""
+                try:
+                    dt = parsedate_to_datetime(pub) if pub else None
+                except Exception:
+                    dt = None
+                title = title.replace("[", "(").replace("]", ")")
+                if title and link:
+                    items.append({"title": title, "link": link, "src": source, "dt": dt})
+        except Exception as e:
+            print(f"News feed error {url}: {e}", file=sys.stderr)
+    items.sort(key=lambda x: x["dt"].timestamp() if x["dt"] else 0, reverse=True)
+    return items[:count]
 
 
 def send_discord(webhook_url, content=None, embeds=None):
@@ -195,6 +237,7 @@ DEFAULT_ICONS = {
 DEFAULT_SECTION_COLORS = {
     "current": 0xF7931A, "update": 0x5865F2,
     "gainers": 0x57F287, "losers": 0xED4245,
+    "news": 0xF1C40F,
 }
 
 # O vuong mau dat truoc tieu de, khop voi mau vien (co the ghi de trong config)
@@ -203,6 +246,7 @@ DEFAULT_SECTION_EMOJIS = {
     "update": "🟦",   # vuong xanh duong
     "gainers": "🟩",  # vuong xanh la
     "losers": "🟥",   # vuong do
+    "news": "🟨",     # vuong vang
 }
 
 
