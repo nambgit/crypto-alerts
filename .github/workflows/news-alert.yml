@@ -1,0 +1,39 @@
+name: Crypto News Alert
+
+on:
+  schedule:
+    - cron: "15,45 * * * *"   # :15 va :45 (lech voi bao gia o :00/:30)
+  workflow_dispatch: {}        # cho phep bam chay tay de test
+
+permissions:
+  contents: write              # de commit lai news_state.json
+
+concurrency:
+  group: news-alert
+  cancel-in-progress: false
+
+jobs:
+  send-news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run news alert
+        id: run
+        env:
+          DISCORD_NEWS_WEBHOOK_URL: ${{ secrets.DISCORD_NEWS_WEBHOOK_URL }}
+        run: python news_alert.py
+
+      - name: Commit state if changed
+        if: steps.run.outputs.state_changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add news_state.json
+          git commit -m "Update news state [skip ci]" || echo "nothing to commit"
+          git pull --rebase origin main || true
+          git push
