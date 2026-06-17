@@ -1,11 +1,5 @@
 {
   "seen": [
-    "https://cointelegraph.com/news/coinbase-token-backed-mortgages-fannie-mae-summer?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-    "https://cointelegraph.com/news/visa-tests-private-stablecoin-settlement-as-institutions-push-blockchain-privacy?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-    "https://cointelegraph.com/news/zcash-new-shielded-pool-orchard-counterfeiting-bug?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-    "https://decrypt.co/370117/hyperliquid-hit-by-uk-fca-warning-as-crypto-perps-face-scrutiny",
-    "https://cointelegraph.com/markets/bitcoin-needs-one-more-thing-to-happen-to-spark-btc-price-rally-analysis?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
-    "https://decrypt.co/370112/morning-minute-massive-zcash-exploit-found-by-claude-extent-unknown",
     "https://cointelegraph.com/news/house-gop-summer-vote-ban-lawmakers-prediction-markets?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
     "https://cointelegraph.com/news/strategy-bitcoin-sale-clarity-act-jpmorgan-capital-b-fundraising?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
     "https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
@@ -299,6 +293,12 @@
     "https://cointelegraph.com/markets/bitcoin-stocks-divergence-returns-as-btc-drops-to-66k-while-nasdaq-adds-3?utm_source=rss&utm_medium=rss&utm_campaign=rss",
     "https://cointelegraph.com/features/spacex-ipo-crypto-price-tokenized-stock?utm_source=rss&utm_medium=rss&utm_campaign=rss",
     "https://cointelegraph.com/learn/emergence-world-ai-agent-simulation?utm_source=rss&utm_medium=rss&utm_campaign=rss",
-    "https://decrypt.co/371287/scale-stablecoin-adoption-nigeria-risks-more-pronounced-imf"
+    "https://decrypt.co/371287/scale-stablecoin-adoption-nigeria-risks-more-pronounced-imf",
+    "https://cointelegraph.com/news/congress-reaches-deal-on-housing-bill-inclusive-of-cbdc-ban-until-2030?utm_source=rss&utm_medium=rss&utm_campaign=rss",
+    "https://cointelegraph.com/news/strc-hits-all-time-low-as-latest-btc-purchases-seen-as-unsustainable?utm_source=rss&utm_medium=rss&utm_campaign=rss",
+    "https://cointelegraph.com/news/crypto-advocates-execs-push-back-on-illinois-transaction-tax?utm_source=rss&utm_medium=rss&utm_campaign=rss",
+    "https://cointelegraph.com/markets/hyperliquid-open-interest-gains-32-in-a-week-is-80-hype-next?utm_source=rss&utm_medium=rss&utm_campaign=rss",
+    "https://cointelegraph.com/news/senators-urge-treasury-ensure-state-authority-in-genius-application?utm_source=rss&utm_medium=rss&utm_campaign=rss",
+    "https://cointelegraph.com/markets/bitcoin-selloff-toward-60k-may-resume-as-japan-hikes-interest-rates?utm_source=rss&utm_medium=rss&utm_campaign=rss"
   ]
 }
